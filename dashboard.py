@@ -3,8 +3,7 @@ import pandas as pd
 import plotly.express as px
 import plotly.graph_objects as go
 from plotly.subplots import make_subplots
-import base64
-from pathlib import Path
+
 
 # Page configuration
 st.set_page_config(
@@ -338,41 +337,18 @@ def load_data():
     
     return df
 
-def get_base64_image(image_path):
-    """Convert image to base64 for embedding"""
-    try:
-        with open(image_path, "rb") as img_file:
-            return base64.b64encode(img_file.read()).decode()
-    except:
-        return None
-
 df = load_data()
 
-# Header with logo
-logo_path = "C:/Users/farmacia/.gemini/antigravity/brain/5645037a-406d-4c09-b316-56f95306d220/uploaded_media_1769725722911.png"
-logo_base64 = get_base64_image(logo_path)
+# Header
+st.markdown("""
+    <div class="hospital-header">
+        <div class="header-content">
+            <h1 class="hospital-title">🏥 Seguimiento de Consumo Jabón Quirúrgico - Alcohol Glicerinado</h1>
+            <p class="hospital-subtitle">HOSPITAL SAN JUAN DE DIOS DE HONDA E.S.E</p>
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
 
-if logo_base64:
-    st.markdown(f"""
-        <div class="hospital-header">
-            <div class="logo-container">
-                <img src="data:image/png;base64,{logo_base64}" alt="Hospital Logo">
-            </div>
-            <div class="header-content">
-                <h1 class="hospital-title">Seguimiento de Consumo Jabón Quirúrgico - Alcohol Glicerinado</h1>
-                <p class="hospital-subtitle">HOSPITAL SAN JUAN DE DIOS DE HONDA E.S.E</p>
-            </div>
-        </div>
-    """, unsafe_allow_html=True)
-else:
-    st.markdown("""
-        <div class="hospital-header">
-            <div class="header-content">
-                <h1 class="hospital-title">🏥 Seguimiento de Consumo Jabón Quirúrgico - Alcohol Glicerinado</h1>
-                <p class="hospital-subtitle">HOSPITAL SAN JUAN DE DIOS DE HONDA E.S.E/p>
-            </div>
-        </div>
-    """, unsafe_allow_html=True)
 
 # Sidebar filters with improved design
 with st.sidebar:
